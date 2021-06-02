@@ -9,9 +9,15 @@ import {FETCH_POSTS_QUERY} from '../utils/graphql';
 
 function Home(){
     const {user}=useContext(AuthContext)
-    const{loading, data:{getPosts:posts}} = useQuery(FETCH_POSTS_QUERY);
-    
-    return(
+    //const{loading, data:{getPosts:posts}} = useQuery(FETCH_POSTS_QUERY);
+    const {data, loding, error}= useQuery(FETCH_POSTS_QUERY);
+    if(errors){
+    console.log(errors)
+    return console.log('hello')
+    }
+    if(data){
+    const{getPosts:posts}= data;
+        return(
         
         <Card fluid >
 <Card.Content>
@@ -59,7 +65,9 @@ function Home(){
     );
     
     
-    }
+    } 
+    
+    
 
 
 export default Home;
